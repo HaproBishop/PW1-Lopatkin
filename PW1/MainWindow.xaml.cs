@@ -39,12 +39,13 @@ namespace PW1
         {                  
             Random_TextBox.Clear();
             Result_TextBox.Clear();
-            bool prv = Int32.TryParse(Range_TextBox.Text, out int n); //Преобразование параметра Range_TextBox.Text в выходной параметр n с типом int             
+            bool prv = int.TryParse(Range_TextBox.Text, out int n); //Преобразование параметра Range_TextBox.Text в выходной параметр n с типом int             
             //Ввод новой переменной - "n", являющаяся диапазоном чисел, необходимых сгенерировать
-            if (prv == true) //Проверка на успешность преобразования параметра Range_TextBox.Text, иначе - задание не будет выполняться
+            if (prv == true && n > 0) //Проверка на успешность преобразования параметра Range_TextBox.Text, иначе - задание не будет выполняться
             {
                 Random_TextBox.Text = Class_Lib_8.Find_MaxValue(n);
-            }                            
+            }
+            else MessageBox.Show("Ошибка, число должно быть больше нуля!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void Range_TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -61,7 +62,7 @@ namespace PW1
 
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
         {//Кнопка закрытия программы :D
-            this.Close();
+            Close();
         }
     }
 }
